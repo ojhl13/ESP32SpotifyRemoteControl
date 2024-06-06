@@ -1,2 +1,2 @@
 # ESP32SpotifyRemoteControl
-proyecto para usar ESP32 con una pantalla OLED para controlar la reproducción de Spotify y mostrar la canción y el artista que se está reproduciendo actualmente. Usaré botones táctiles para las funciones reproducir/pausa, anterior, siguiente y un codificador giratorio para controlar el volumen.
+project to use ESP32 with an OLED display to control Spotify playback and display the song and artist that is currently being played. I will use touch buttons for the play/pause, prev, next functions and a rotary encoder to control the volume
