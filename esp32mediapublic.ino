@@ -3,7 +3,7 @@
 #include <WiFi.h>
 
 //#define DBG_SERIAL
-
+/*
 #define DISABLE_ALBUM
 #define DISABLE_ARTIST
 #define DISABLE_AUDIOBOOKS
@@ -18,6 +18,7 @@
 #define DISABLE_TRACKS
 
 #define DISABLE_WEB_SERVER
+*/
 #include <SpotifyEsp32.h>
 #include "settings.h"
 /**END Spotify libs****/
@@ -28,12 +29,22 @@
 
 /*END oled libs*/
 
+/*touch buttons libs*/
+#include "touchbutton.h"
+/*END touch buttons libs*/
+
+
 /**OLED vars**/
 U8G2_SSD1306_128X64_NONAME_F_SW_I2C 
 u8g2(U8G2_R0,22,21,U8X8_PIN_NONE);/*22CLOCK/21 DATA*/
 /**ENDS***/
 
 Spotify sp(CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN);
+
+struct Button button1 = {BUTTON1, 0, 0,0,0};
+struct Button button2 = {BUTTON2, 0, 0,0,0};
+struct Button button3 = {BUTTON3, 0, 0,0,0};
+struct Button button4 = {BUTTON4, 0, 0,0,0};
 
 void setup() {
 #ifdef DBG_SERIAL  
@@ -50,6 +61,7 @@ void setup() {
 #endif
     sp.pause_playback();
     u8g2.begin();
+    setup_buttons();
 }
 
 void drawLines(String song,String artis)
@@ -92,7 +104,10 @@ void loop() {
 #endif    
     }
     
-    
+  checkPressed(&button1);
+  checkPressed(&button2);
+  checkPressed(&button3);
+  checkPressed(&button4);
 }
 
 void connect_to_wifi(){
